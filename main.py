@@ -26,7 +26,13 @@ cell_with_year = 'C1'  # The cell where the current year is written
 template_path = 'template/Filterregnskap_template.xlsx'
 
 
+def get_year_to_track():
+    year_to_track_local = easygui.enterbox(msg='Oppgi hvilket år som skal regnskapsføres: ', title='Velg år', default=str(datetime.date.today ().year))
+    if (year_to_track_local is None) or (not year_to_track_local.isnumeric()):
+        raise Exception('Ugyldig format på oppgitt årstall. Avslutter uten å endre regnearket.')
+    return year_to_track_local
 
+year_to_track = None
 create_new_account = False
 
 downloads_dir = str(Path.home() / "Downloads")
@@ -60,7 +66,8 @@ existing_form = filedialog.askopenfilename(title='Velg regnskap å oppdatere', i
 # If no file was selected, create a new one from template
 if existing_form is None or existing_form == '':
     create_new_account = True
-    new_account_location = filedialog.asksaveasfilename(title='Lagre nytt regnskap', initialdir=existing_form_default_dir, initialfile='Filterregnskap_ÅRSTALL.xlsx')
+    year_to_track = get_year_to_track()
+    new_account_location = filedialog.asksaveasfilename(title='Lagre nytt regnskap', initialdir=documents_dir, initialfile='Filterregnskap_' + str(year_to_track) + '.xlsx')
     if new_account_location is None or new_account_location == '':
         pyautogui.alert('Ugyldig fillokasjon, avbryter scriptet', 'Avbrutt')
         exit()
@@ -109,7 +116,6 @@ file.close()
 
 
 # Read current accounting form
-
 workbook = openpyxl.load_workbook(filename=output_file_path)
 sheet = workbook['Regnskap']
 
@@ -217,18 +223,16 @@ for row in range(first_transaction_row, last_transaction_row + 1):
     transaction[num_ref_index] = sheet[num_ref_col + str(row)].value
     old_transactions.append(transaction)
 
-
-# Get the year to use
-year_to_track = sheet[cell_with_year].value
+# Get year to make account for
+if year_to_track is None:
+    year_to_track = sheet[cell_with_year].value
 # If year is not listed in the account, ask the user what year to use
-if create_new_account or not str(year_to_track).isnumeric() or int(year_to_track) < 1900 or int(year_to_track) > 2500:
-    year_to_track = easygui.enterbox(msg='Oppgi hvilket år som skal regnskapsføres: ', title='Velg år', default=str(datetime.date.today().year))
-    if (year_to_track is None) or (not year_to_track.isnumeric()):
-        raise Exception('Ugyldig format på oppgitt årstall. Avslutter uten å endre regnearket.')
+if not str(year_to_track).isnumeric() or int(year_to_track) < 1900 or int(year_to_track) > 2500:
+    year_to_track = get_year_to_track()
 sheet[cell_with_year] = year_to_track
 
-# Iterate through csv transactions and pick out the ones from the correct year that are not already present in the old account form
 
+# Iterate through csv transactions and pick out the ones from the correct year that are not already present in the old account form
 new_transactions = []
 for potentially_new_transaction in csv_transactions:
     # Check if transaction is from the correct year
