@@ -18,7 +18,7 @@ Programmet kan nå kjøres ved å dobbeltklikke på `main.py`.
 
 
 ## Eksportere csv-fil fra Sparebanken Sør
-Gå til 'Søk i Transaksjoner' og søk etter perioden du ønsker. Deretter trykker du på ![Eksporter til regneark](https://nettbedriften.evry.com/cpsnbg2/bank/2844/images/excel.gif)-knappen øverst til høyre i søkeresultatene for å laste ned et regneark med transaksjoner.
+Gå til 'Transaksjonsoversikt' og søk etter perioden du ønsker. Deretter trykker du på ![Eksporter til regneark](https://nettbedriften.evry.com/cpsnbg2/bank/2844/images/excel.gif)-knappen øverst til høyre i søkeresultatene for å laste ned et regneark med transaksjoner.
 
 
 ## Endre python-programmet

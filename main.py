@@ -92,24 +92,71 @@ if not create_new_account:
 # Make changes to the original document
 output_file_path = existing_form
 
+# Get format type of csv
+FORMAT_TRANSAKSJONSOVERSIKT = 1
+FORMAT_SOEK_I_TRANSAKSJONER = 2
+def get_csv_format_type(transactions_file):
+    fid = open (transactions_file_path, 'r', encoding='cp1252')
+    header_line = fid.readline(1000)
+    fid.close ()
+    if header_line.find('Bokføringsdato') != -1:
+        return FORMAT_TRANSAKSJONSOVERSIKT
+
+    fid = open (transactions_file_path, 'r', encoding='UTF-8')
+    header_line = fid.readline(1000)
+    fid.close()
+    if header_line.find('Bokført') != -1:
+        return FORMAT_SOEK_I_TRANSAKSJONER
+    raise Exception('Invalid format on ' + transactions_file)
+
+format_type = get_csv_format_type(transactions_file_path)
+
 # Read csv-file exported from Sparebanken Sør
-file = open(transactions_file_path, "r")
+if format_type == FORMAT_TRANSAKSJONSOVERSIKT:
+    file = open(transactions_file_path, 'r', encoding='cp1252')
+elif format_type == FORMAT_SOEK_I_TRANSAKSJONER:
+    file = open (transactions_file_path, 'r', encoding='UTF-8')
 csvreader = csv.reader(file, delimiter=';')
 csv_transactions_header = next(csvreader)
 
-date_index = csv_transactions_header.index('Bokføringsdato')
-bank_description_index = csv_transactions_header.index('Beskrivelse')
-nok_in_index = csv_transactions_header.index('Inn på konto')
-nok_out_index = csv_transactions_header.index('Ut av konto')
-ref_index = csv_transactions_header.index('Ref.')
-num_ref_index = csv_transactions_header.index('Num.Ref.')
+
+if format_type == FORMAT_TRANSAKSJONSOVERSIKT:
+    date_index = csv_transactions_header.index('Bokføringsdato')
+    bank_description_index = csv_transactions_header.index('Beskrivelse')
+    nok_in_index = csv_transactions_header.index('Inn på konto')
+    nok_out_index = csv_transactions_header.index('Ut av konto')
+    ref_index = csv_transactions_header.index('Ref.')
+    num_ref_index = csv_transactions_header.index('Num.Ref.')
+elif format_type == FORMAT_SOEK_I_TRANSAKSJONER:
+    date_index = csv_transactions_header.index('Bokført')
+    bank_description_index = csv_transactions_header.index('Beskrivelse')
+    tekstkode_indeks = csv_transactions_header.index ('Tekstkode')
+    belop_indexs = csv_transactions_header.index ('Beløp')
+    ref_index = csv_transactions_header.index('Arkivref.')
+    nok_in_index = len(csv_transactions_header)
+    nok_out_index = len(csv_transactions_header) + 1
+    num_ref_index = len(csv_transactions_header) + 2
+    csv_transactions_header.append('Inn på konto')
+    csv_transactions_header.append('Ut av konto')
+    csv_transactions_header.append('Num.Ref.')
 
 
 csv_transactions = []
 for row in csvreader:
-    if row[date_index] == '':
+    if len(row) == 0 or row[date_index] == '':
         break
     else:
+        if format_type == FORMAT_SOEK_I_TRANSAKSJONER:
+            row[bank_description_index] = row[tekstkode_indeks] + '  ' + row[bank_description_index]
+            row.append('') # Inn på konto
+            row.append('') # Ut av konto
+            row.append('') # Num.Ref
+            if len(row[belop_indexs]) > 0:
+                if row[belop_indexs][0] == '-':
+                    row[nok_out_index] = row[belop_indexs][1:]
+                else:
+                    row[nok_in_index] = row[belop_indexs]
+
         csv_transactions.append(row)
 file.close()
 
@@ -215,7 +262,7 @@ first_transaction_row = IB_Bank_row + 1
 old_transactions = []
 for row in range(first_transaction_row, last_transaction_row + 1):
     transaction = [0] * len(csv_transactions_header)
-    transaction[date_index] = sheet[date_col + str(row)].value.strftime("%m.%d.%Y")
+    transaction[date_index] = sheet[date_col + str(row)].value.strftime("%d.%m.%Y")
     transaction[bank_description_index] = sheet[bank_description_col + str(row)].value
     transaction[nok_in_index] = sheet[nok_in_col + str(row)].value
     transaction[nok_out_index] = sheet[nok_out_col + str(row)].value
@@ -244,23 +291,52 @@ for potentially_new_transaction in csv_transactions:
     transaction_is_old = False
     for old_transaction in old_transactions:
         # If date and ref num are identical, we say that the transactions are the same
-        if (potentially_new_transaction[date_index] == old_transaction[date_index] and
-                potentially_new_transaction[ref_index] == old_transaction[ref_index] and
-                potentially_new_transaction[num_ref_index] == old_transaction[num_ref_index]):
+        date_differs = str(potentially_new_transaction[date_index]) != str(old_transaction[date_index])
+        ref_differs = str(potentially_new_transaction[ref_index]) != str(old_transaction[ref_index])
+        if len(str(potentially_new_transaction[num_ref_index])) == 0\
+                or len(str(old_transaction[num_ref_index])) == 0\
+                or old_transaction[num_ref_index] is None:
+            num_ref_differs = False
+        else:
+            num_ref_differs = str(potentially_new_transaction[num_ref_index]) != str(old_transaction[num_ref_index])
+
+        if not (date_differs or ref_differs or num_ref_differs):
             transaction_is_old = True
             break
     if not transaction_is_old:
         new_transactions.append(potentially_new_transaction)
 
+
+
 # Insert blank rows to fill inn with the new transactions
 if len(new_transactions) != 0:
+    # When inserting blank rows, the cell merge properties are not shifted down. Loop over the affected rows and remember the merge properties
+    cells_to_merge_after_insert = []
+    for row in range(last_transaction_row + 2, last_transaction_row + 2 + len(new_transactions)):
+        for cell_range in sheet.merged_cells.ranges:
+            bounds = cell_range.bounds
+            if bounds[1] == row:
+                sheet.merged_cells.remove(str(cell_range))
+                cells_to_merge_after_insert.append(bounds)
+
     sheet.insert_rows(last_transaction_row + 1, len(new_transactions))
     UB_Bank_row += len(new_transactions)
 
-    # When inserting blank rows, the cell height and merge properties are not shifted down. Loop over the affected rows and fix
-    for row in range(last_transaction_row + 1, last_transaction_row + 1 + len(new_transactions)):
+    # Merge cells that were preciously merged
+    for bounds in cells_to_merge_after_insert:
+        sheet.merge_cells (start_row=bounds[1] + len(new_transactions),
+            start_column=bounds[0],
+            end_row=bounds[3] + len(new_transactions),
+            end_column=bounds[2])
+
+
+    # When inserting blank rows, the cell height is not shifted down. Loop over the affected rows and fix
+    for row in range(last_transaction_row + 10, last_transaction_row, -1): #
         sheet.row_dimensions[row + len(new_transactions)].height = sheet.row_dimensions[row].height # Transfer dimension changes of the shifted cells
         sheet.row_dimensions[row].height = None
+
+    # When inserting blank rows, the cell merge properties are not shifted down. Loop over the affected rows and fix
+    for row in range (last_transaction_row + 1, last_transaction_row + 1 + len (new_transactions)):
         for cell_range in sheet.merged_cells.ranges:
             bounds = cell_range.bounds
             if bounds[1] == row:
@@ -319,10 +395,10 @@ for transaction in new_transactions:
     sheet[bank_description_col + str(row)] = transaction[bank_description_index]
 
     # Write Ref.
-    sheet[ref_col + str(row)] = int(transaction[ref_index])
+    sheet[ref_col + str(row)] = transaction[ref_index]
 
     # Write Num.Ref
-    sheet[num_ref_col + str(row)] = int(transaction[num_ref_index])
+    sheet[num_ref_col + str(row)] = transaction[num_ref_index]
 
     last_new_transaction_row = row
     row += 1
@@ -366,6 +442,7 @@ while BALANSESUM_row == -1:
 # Add formula for BALANSESUM
 sheet[nok_in_col + str(BALANSESUM_row)] = '=SUM(' + nok_in_col + '$' + str(IB_Bank_row) + ':' + nok_in_col + str(UB_Bank_row) + ')'
 sheet[nok_out_col + str(BALANSESUM_row)] = '=SUM(' + nok_out_col + '$' + str(IB_Bank_row) + ':' + nok_out_col + str(UB_Bank_row) + ')'
+sheet[category_col + str(BALANSESUM_row)] = '=' + nok_in_col + str(BALANSESUM_row) + '-' + nok_out_col + str(BALANSESUM_row)
 
 
 # Add 'Utgående Balanse' til sammendraget over regnskapet
