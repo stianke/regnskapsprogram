@@ -1,20 +1,49 @@
 
+num_libraries = 16
+library_num = 1
+def print_loading_screen():
+    global library_num
+    global num_libraries
+    end_char = '\r'
+    if library_num == num_libraries:
+        end_char = '\n'
+    print('Laster inn ' + str(library_num) + '/' + str(num_libraries) + '...', end=end_char)
+    library_num += 1
+
+
+print_loading_screen()
 import tkinter as tk
+print_loading_screen()
 from tkinter import filedialog
+print_loading_screen()
 from pathlib import Path
+print_loading_screen()
 import csv
+print_loading_screen()
 import shutil
+print_loading_screen()
 import openpyxl
+print_loading_screen()
 from openpyxl.styles import PatternFill
+print_loading_screen()
 from openpyxl.formatting.rule import FormulaRule
+print_loading_screen()
 from openpyxl.worksheet.datavalidation import DataValidation
+print_loading_screen()
 from openpyxl.styles.borders import Border, Side
+print_loading_screen()
 import pandas
+print_loading_screen()
 import os
+print_loading_screen()
 import datetime
+print_loading_screen()
 import pyautogui
+print_loading_screen()
 import easygui
+print_loading_screen()
 import fnmatch
+
 
 # pip install easygui
 # pip install pandas
