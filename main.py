@@ -84,19 +84,25 @@ if os.path.isfile('tmp/last_account_file.txt'):
 root = tk.Tk()
 root.withdraw()
 # Get filepath to csv exported from Sparebanken Sor
+
+pyautogui.alert('Velg transaksjonsoversikt eksportert fra Sparebanken Sør', '')
 transactions_file_path = filedialog.askopenfilename(title='Velg transaksjonsoversikt eksportert fra Sparebanken Sør', initialdir=transactions_file_default_dir)
 # If no file was selected, abort
 if transactions_file_path is None or transactions_file_path == '':
     pyautogui.alert('Ingen fil valgt, avbryter scriptet', 'Avbrutt')
     exit()
 
-existing_form = filedialog.askopenfilename(title='Velg regnskap å oppdatere', initialdir=existing_form_default_dir, initialfile=existing_form_default_name)
+pyautogui.alert('Velg et eksisterende regnskap for å legge til transaksjoner.\n' + 
+    'NB: Det eksisterende regnskapet må være laget av dette scriptet for å være kompitabelt.\n\n' + 
+    'Trykk avbryt i menyen som dukker opp for å opprette et nytt regnskap.', 'Oppdater eksisterende rengskap')
+existing_form = filedialog.askopenfilename(title='Oppdater eksisterende regnskap', initialdir=existing_form_default_dir, initialfile=existing_form_default_name)
 
 # If no file was selected, create a new one from template
 if existing_form is None or existing_form == '':
     create_new_account = True
     year_to_track = get_year_to_track()
-    new_account_location = filedialog.asksaveasfilename(title='Lagre nytt regnskap', initialdir=documents_dir, initialfile='Filterregnskap_' + str(year_to_track) + '.xlsx')
+    pyautogui.alert('Velg hvor det nye regnskapet skal lagres', 'Lagre som')
+    new_account_location = filedialog.asksaveasfilename(title='Lagre som', initialdir=documents_dir, initialfile='Filterregnskap_' + str(year_to_track) + '.xlsx')
     if new_account_location is None or new_account_location == '':
         pyautogui.alert('Ugyldig fillokasjon, avbryter scriptet', 'Avbrutt')
         exit()
@@ -492,5 +498,5 @@ workbook.save(output_file_path)
 workbook.close()
 
 
-pyautogui.alert(str(len(new_transactions)) + ' new transactions added', 'Script finished successfully')
+pyautogui.alert(str(len(new_transactions)) + ' nye transaksjoner lagt til', 'Program ferdig')
 
