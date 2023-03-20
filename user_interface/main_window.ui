@@ -7,11 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>832</width>
-    <height>374</height>
+    <height>431</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Regnskapsprogram</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icons/piggy-bank.png</normaloff>icons/piggy-bank.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QRadioButton" name="radioButton_make_new_account">
@@ -54,7 +58,7 @@
     <property name="geometry">
      <rect>
       <x>760</x>
-      <y>220</y>
+      <y>260</y>
       <width>41</width>
       <height>31</height>
      </rect>
@@ -92,7 +96,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>220</y>
+      <y>260</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -186,7 +190,7 @@
     <property name="geometry">
      <rect>
       <x>430</x>
-      <y>290</y>
+      <y>330</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -204,7 +208,7 @@
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>290</y>
+      <y>330</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -233,7 +237,7 @@
      </font>
     </property>
     <property name="inputMask">
-     <string>9999</string>
+     <string/>
     </property>
     <property name="text">
      <string/>
@@ -243,7 +247,7 @@
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>220</y>
+      <y>260</y>
       <width>561</width>
       <height>31</height>
      </rect>
@@ -277,6 +281,45 @@
       <width>721</width>
       <height>31</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_account_name">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>220</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_account_name">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>220</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Regnskap for</string>
     </property>
    </widget>
   </widget>

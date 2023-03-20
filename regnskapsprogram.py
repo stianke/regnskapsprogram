@@ -24,7 +24,7 @@ FORMAT_SOEK_I_TRANSAKSJONER = 2
 template_path = 'template/Filterregnskap_template.xlsx'
 header_row = 2  # The row where the category headers are
 cell_with_year = 'C1'  # The cell where the current year is written
-
+cell_with_name = 'B1'
 
 class Transaciton:
     def __init__(self):
@@ -98,10 +98,17 @@ def insert_empty_rows(sheet, row_to_insert_at, num_rows_to_insert, date_col, des
     return num_rows_to_insert
 
 
-def run_main_program(create_new_account, csv_transactions_file, year_to_track, account_filepath):
+def run_main_program(create_new_account, csv_transactions_file, year_to_track, account_name, account_filepath):
     global template_path
     global header_row
     global cell_with_year
+
+    output_filepath = account_filepath
+    if create_new_account:
+        input_filepath = account_filepath
+    else:
+        input_filepath = template_path
+    tmp_filepath = 'tmp/regnskap_tmp.xlsx'
 
     # Check for invalid csv file
     if not os.path.isfile(csv_transactions_file):
@@ -110,25 +117,19 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         title = 'Avbrutt'
         return success, message, title
 
-    # Check for invalid folder location
-    if create_new_account:
-        if not os.path.exists(os.path.dirname(account_filepath)):
-            success = False
-            message = 'Ugyldig mappeplassering: ' + str(os.path.dirname(account_filepath))
-            title = 'Avbrutt'
-            return success, message, title
-        shutil.copyfile(template_path, account_filepath)
+    # Check for invalid input file location
+    if not os.path.exists(os.path.dirname(input_filepath)):
+        success = False
+        message = 'Ugyldig mappe: ' + str(os.path.dirname(input_filepath))
+        title = 'Avbrutt'
+        return success, message, title
+    shutil.copyfile(src=input_filepath, dst=tmp_filepath)
 
-    # Backup current form
-    if not create_new_account:
-        if not os.path.exists('backups'):
-            os.makedirs('backups')
-        [_, file_name] = os.path.split(account_filepath)
-        backup_filename = datetime.datetime.now().strftime("%Y.%m.%d_kl_%H.%M.%S") + '_' + file_name
-        shutil.copyfile(account_filepath, 'backups/' + backup_filename)
-
-    # Make changes to the original document
-    output_file_path = account_filepath
+    # Check for invalid account name
+    if create_new_account and len(account_name) == 0:
+        success = False
+        message = 'Oppgi navn på regnskap'
+        title = 'Avbrutt'
 
     # Get format type of csv file
     format_type = -1
@@ -199,13 +200,28 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
                 else:
                     transaction.belop_inn = row[belop_indexs]
             csv_transactions.append(transaction)
-
     file.close()
 
-    # Read current accounting form
-    workbook = openpyxl.load_workbook(filename=output_file_path)
+    # Read transactions in current accounting form
+    workbook = openpyxl.load_workbook(filename=tmp_filepath)
     sheet = workbook['Regnskap']
 
+    # Set account name and year
+    if create_new_account:
+        sheet[cell_with_name] = 'REGNSKAP ' + account_name.upper()
+        sheet[cell_with_year] = year_to_track
+
+    # If year is not listed in the account, return False
+    year_to_track = sheet[cell_with_year].value
+    if not str(year_to_track).isnumeric() or int(year_to_track) < 1900 or int(year_to_track) > 2500:
+        success = False
+        message = 'Error: Årstall (' + str(year_to_track) + ') er ugyldig'
+        title = 'Avbrutt'
+        workbook.close()
+        return success, message, title
+
+
+    # Read column indexes for the different categories
     date_col = ''
     description_col = ''
     attachment_col = ''
@@ -216,7 +232,6 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     bank_description_col = ''
     ref_col = ''
     num_ref_col = ''
-
     all_cols_found = False
     for col in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
         header_description = sheet[col + str(header_row)].value
@@ -256,7 +271,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
 
     if not all_cols_found:
         success = False
-        message = 'Ugyldig format på : ' + str(output_file_path) + '. En eller flere kolonner ble ikke funnet'
+        message = 'Ugyldig format på : ' + str(output_filepath) + '. En eller flere kolonner ble ikke funnet'
         title = 'Avbrutt'
         workbook.close()
         return success, message, title
@@ -310,17 +325,6 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         transaction.num_ref = sheet[num_ref_col + str(row)].value
         old_transactions.append(transaction)
 
-    # Get year to make account for
-    if not create_new_account:
-        year_to_track = sheet[cell_with_year].value
-    # If year is not listed in the account, return False
-    if not str(year_to_track).isnumeric() or int(year_to_track) < 1900 or int(year_to_track) > 2500:
-        success = False
-        message = 'Error: Årstall (' + str(year_to_track) + ') er ugyldig'
-        title = 'Avbrutt'
-        workbook.close()
-        return success, message, title
-    sheet[cell_with_year] = year_to_track
 
 
     # Iterate through csv transactions and pick out the ones from the correct year that are not already present in the old account form
@@ -455,15 +459,27 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         if finished:
             break
 
-
-    workbook.save(output_file_path)
+    workbook.save(tmp_filepath)
     workbook.close()
 
+    # Backup current form
+    if not create_new_account:
+        if not os.path.exists('backups'):
+            os.makedirs('backups')
+        [_, file_name] = os.path.split(input_filepath)
+        backup_filename = datetime.datetime.now().strftime("%Y.%m.%d_kl_%H.%M.%S") + '_' + file_name
+        shutil.copyfile(input_filepath, 'backups/' + backup_filename)
+    shutil.copyfile(tmp_filepath, output_filepath)
 
-    # Save default file selection
     if not os.path.exists('tmp'):
         os.makedirs('tmp')
 
+    # Save the default file name
+    f = open('tmp/last_account_name.txt', 'w')
+    f.write(account_name)
+    f.close()
+
+    # Save default file selection
     f = open('tmp/last_account_file.txt', 'w')
     f.write(account_filepath)
     f.close()
@@ -480,6 +496,7 @@ def main():
     
     default_create_new_account = True
     default_year = str(datetime.date.today().year)
+    default_name = ''
     default_new_transactions_file_dir = downloads_dir
     default_account_location = documents_dir
     default_exsisting_form = ''
@@ -492,8 +509,16 @@ def main():
         f.close()
         default_create_new_account = False
 
+    # Get default account name
+    if os.path.isfile('tmp/last_account_name.txt'):
+        f = open('tmp/last_account_name.txt')
+        default_exsisting_form = f.read()
+        default_name = os.path.dirname(default_exsisting_form)
+        f.close()
+
     user_interface.UI_master.run_GUI(default_create_new_account,
                                      default_year,
+                                     default_name,
                                      default_new_transactions_file_dir,
                                      default_account_location,
                                      default_exsisting_form,
