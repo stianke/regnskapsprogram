@@ -105,9 +105,9 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
 
     output_filepath = account_filepath
     if create_new_account:
-        input_filepath = account_filepath
-    else:
         input_filepath = template_path
+    else:
+        input_filepath = account_filepath
     tmp_filepath = 'tmp/regnskap_tmp.xlsx'
 
     # Check for invalid csv file
