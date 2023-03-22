@@ -8,17 +8,17 @@ For å kjøre programmet må man først laste med Python (lastes ned [herfra](ht
 
 Last deretter ned fire Python-biblioteker som brukes av programmet:
 * Åpne kommandolinjen (**Windows tast** → skriv **cmd** → **Enter**)
-* Kopier inn følgende kommando, og trykk enter `pip install pandas openpyxl`
+* Kopier inn følgende kommando, og trykk enter `pip install pandas openpyxl pyqt5`
 
 ### Last ned selve programmet
 Trykk **Code** → **Download Zip**. Høyretrykk **regnskapsprogram.zip** → **Pakk ut alle** → Velg lokasjon hvor du vil lagre programmet.
 
 ### Sett opp Python til å åpne programmet
-Den letteste måten å kjøre programmet på er å velge Python som applikasjon for `.py` filer. Dette gjøres ved å høyretrykke på `regnskapsprogram.py` -> Egenskaper -> Åpne med -> Endre -> Flere apper -> Python. Programmet kan nå kjøres ved å dobbeltklikke på `regnskapsprogram.py` eller en snarvei til `regnskapsprogram.py`.
+Den letteste måten å kjøre programmet på er å velge Python som applikasjon for `.py` filer. Dette gjøres ved å høyretrykke på `regnskapsprogram` -> Egenskaper -> Åpne med -> Endre -> Flere apper -> Python. Programmet kan nå kjøres ved å dobbeltklikke på `regnskapsprogram` eller en snarvei til `regnskapsprogram`.
 
 ## Hvordan bruker programmet
 Når programmet kjører må du velge en transaksjonsoversikt eksportert fra Sparebanken Sør. Se avsnittet under for hvordan dette ekspoerteres.
-Første gang et regnskap lages hvert år, huker man av for "Opprett nytt regnskap". Da må man oppgi årstall for regnskapet, og velge hvor man skal lagre resultatet. For å legge inn nye transaksjoner i et eksisterende regnskap, huker man av for "Utvid eksisterende regnskap", og velger det eksisterende regnskapet. Dette MÅ være et regnskap som tidligere er generert av `regnskapsprogram.py` for å være kompitabelt.
+Første gang et regnskap lages hvert år, huker man av for "Opprett nytt regnskap". Da må man oppgi årstall for regnskapet, og velge hvor man skal lagre resultatet. For å legge inn nye transaksjoner i et eksisterende regnskap, huker man av for "Utvid eksisterende regnskap", og velger det eksisterende regnskapet. Dette MÅ være et regnskap som tidligere er generert av `regnskapsprogram` for å være kompitabelt.
 
 ## Eksportere transaksjonsoversikt fra Sparebanken Sør
 1. Fra hovedsiden i Sparebanken Sør, trykk på 'Transaksjonsoversikt' for den aktuelle bankkontoen. 
