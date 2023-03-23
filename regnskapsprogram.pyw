@@ -14,8 +14,7 @@ import fnmatch
 
 import user_interface.UI_master
 
-# pip install pandas
-# pip install openpyxl
+# pip install pandas openpyxl pyqt5
 
 
 FORMAT_TRANSAKSJONSOVERSIKT = 1
@@ -388,7 +387,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         sheet[category_cell] = 'Udefinert'
 
         # Write 'Category OK' check
-        category_ok_formula = '=AND(OR(AND((' + nok_in_cell + '>' + nok_out_cell + '), ISNUMBER(MATCH(' + category_cell + ', INN, 0))), AND((' + nok_in_cell + '<' + nok_out_cell + '), ISNUMBER(MATCH(' + category_cell + ', UT, 0)))), NOT(EXACT(REPLACE(' + category_cell + ', 1, 2, ""), "Udefinert")))'
+        category_ok_formula = '=AND(OR(AND((' + nok_in_cell + '>' + nok_out_cell + '), ISNUMBER(MATCH(' + category_cell + ', INN, 0))), AND((' + nok_in_cell + '<' + nok_out_cell + '), ISNUMBER(MATCH(' + category_cell + ', UT, 0)))), NOT(EXACT(' + category_cell + ', "Udefinert")))'
         category_ok_cell = category_ok_col + str(row)
         sheet[category_ok_cell] = category_ok_formula
 
