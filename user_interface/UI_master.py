@@ -23,9 +23,10 @@ class MyGUI(QMainWindow):
         
         self.main_program_function = staticmethod(main_program_function)
         
-        # Create class variables
+        # Create instance variables
         self.default_new_transactions_file_dir = default_new_transactions_file_dir
         self.default_account_location = default_account_location
+
         
         # Set on-click handlers for buttons
         self.radioButton_make_new_account.clicked.connect(self.update_radiobutton_choice)
@@ -42,7 +43,10 @@ class MyGUI(QMainWindow):
         
         # Initialize default location for exsisting account
         self.lineEdit_selcet_exsisting_account.setText(str(default_exsisting_form))
-        
+
+        # Initialize default name
+        self.lineEdit_account_name.setText(str(default_name))
+
         # Initialize default radiobutton state
         if default_create_new_account:
             self.radioButton_make_new_account.nextCheckState()
@@ -129,7 +133,8 @@ class MyGUI(QMainWindow):
         message_box.setWindowTitle(title)
         message_box.exec_()
         if success:
-            exit()
+            #exit()
+            pass
 
 def run_GUI(default_create_new_account, default_year, default_name, default_new_transactions_file_dir, default_account_location, default_exsisting_form, main_program_function):
     app = QApplication([])

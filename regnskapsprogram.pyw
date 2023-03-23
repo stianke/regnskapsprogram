@@ -512,8 +512,7 @@ def main():
     # Get default account name
     if os.path.isfile('tmp/last_account_name.txt'):
         f = open('tmp/last_account_name.txt')
-        default_exsisting_form = f.read()
-        default_name = os.path.dirname(default_exsisting_form)
+        default_name = f.read()
         f.close()
 
     user_interface.UI_master.run_GUI(default_create_new_account,
