@@ -62,28 +62,10 @@ class MyGUI(QMainWindow):
     def update_radiobutton_choice(self):
         if self.radioButton_make_new_account.isChecked():
             self.radio_button_state = RADIOBUTTON_STATE_NEW_ACCOUNT
-            self.label_save_new_account_as.show()
-            self.lineEdit_save_new_account_as.show()
-            self.toolButton_save_new_account_as.show()
-            self.label_account_year.show()
-            self.lineEdit_account_year.show()
-            self.lineEdit_account_name.show()
-            self.label_account_name.show()
-            self.label_selcet_exsisting_account.hide()
-            self.lineEdit_selcet_exsisting_account.hide()
-            self.toolButton_selcet_exsisting_account.hide()
+            self.conditional_settings.setCurrentIndex(0)
         else:
             self.radio_button_state = RADIOBUTTON_STATE_EXSISTING_ACCOUNT
-            self.label_save_new_account_as.hide()
-            self.lineEdit_save_new_account_as.hide()
-            self.toolButton_save_new_account_as.hide()
-            self.label_account_year.hide()
-            self.lineEdit_account_name.hide()
-            self.label_account_name.hide()
-            self.lineEdit_account_year.hide()
-            self.label_selcet_exsisting_account.show()
-            self.lineEdit_selcet_exsisting_account.show()
-            self.toolButton_selcet_exsisting_account.show()
+            self.conditional_settings.setCurrentIndex(1)
     
     # Open file explorer to select transactions exported from Sparebanken Sør
     def select_csv_transactions(self):
