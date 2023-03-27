@@ -227,7 +227,6 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     nok_in_col = ''
     nok_out_col = ''
     category_col = ''
-    category_ok_col = ''
     bank_description_col = ''
     ref_col = ''
     num_ref_col = ''
@@ -246,8 +245,6 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
             nok_out_col = col
         elif header_description == 'Kategori':
             category_col = col
-        elif header_description == 'Kategori OK':
-            category_ok_col = col
         elif header_description == 'Beskrivelse fra Sparebanken Sør':
             bank_description_col = col
         elif header_description == 'Ref.':
@@ -261,7 +258,6 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
                 nok_in_col != '' and
                 nok_out_col != '' and
                 category_col != '' and
-                category_ok_col != '' and
                 bank_description_col != '' and
                 ref_col != '' and
                 num_ref_col != ''):
@@ -276,7 +272,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         return success, message, title
 
     # Find row numbers for "IB Bank" and "UB Bank"
-    all_relevant_cols = date_col + description_col + attachment_col + nok_in_col + nok_out_col + category_col + category_ok_col + bank_description_col + ref_col + num_ref_col
+    all_relevant_cols = date_col + description_col + attachment_col + nok_in_col + nok_out_col + category_col + bank_description_col + ref_col + num_ref_col
     UB_Bank_row = -1
     IB_Bank_row = -1
     row = header_row + 1
@@ -386,11 +382,6 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         category_cell = category_col + str(row)
         sheet[category_cell] = 'Udefinert'
 
-        # Write 'Category OK' check
-        category_ok_formula = '=AND(OR(AND((' + nok_in_cell + '>' + nok_out_cell + '), ISNUMBER(MATCH(' + category_cell + ', INN, 0))), AND((' + nok_in_cell + '<' + nok_out_cell + '), ISNUMBER(MATCH(' + category_cell + ', UT, 0)))), NOT(EXACT(' + category_cell + ', "Udefinert")))'
-        category_ok_cell = category_ok_col + str(row)
-        sheet[category_ok_cell] = category_ok_formula
-
         # Write bank description
         sheet[bank_description_col + str(row)] = transaction.bank_description
 
@@ -407,7 +398,24 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     if len(new_transactions) > 0:
         # Set conditional formatting in category_col
         redFill = openpyxl.styles.PatternFill(start_color='FD8787', end_color='FD8787', fill_type='solid')
-        rule = FormulaRule(formula=['NOT(' + category_ok_col + str(first_transaction_row) + ')'], fill=redFill)
+        nok_in_cell = nok_in_col + str(first_transaction_row)
+        nok_out_cell = nok_out_col + str(first_transaction_row)
+        category_cell = category_col + str(first_transaction_row)
+        category_ok_formula = 'NOT(AND(OR(AND((' + nok_in_cell + '>' + nok_out_cell + '), ISNUMBER(MATCH(' + category_cell + ', INN, 0))), AND((' + nok_in_cell + '<' + nok_out_cell + '), ISNUMBER(MATCH(' + category_cell + ', UT, 0)))), NOT(EXACT(' + category_cell + ', "Udefinert"))))'
+        category_ok_formula = (
+            f'OR('
+                f'ISNUMBER(SEARCH("Udefinert", {category_cell}))'
+                f', '
+                f'NOT('
+                    f'OR('
+                        f'AND(({nok_in_cell}>{nok_out_cell}), ISNUMBER(MATCH({category_cell}, INN, 0)))'
+                        f', '
+                        f'AND(({nok_in_cell}<{nok_out_cell}), ISNUMBER(MATCH({category_cell}, UT, 0)))'
+                    f')'
+                f')'
+            f')'
+        )
+        rule = FormulaRule(formula=[category_ok_formula], fill=redFill)
         # Delete old conditional formatting
         for key in list(sheet.conditional_formatting._cf_rules.keys()):
             rule_old = sheet.conditional_formatting._cf_rules.get(key)[0]
