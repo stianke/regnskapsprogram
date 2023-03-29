@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
 from PyQt5 import uic
+import sys
 
 RADIOBUTTON_STATE_NEW_ACCOUNT = 1
 RADIOBUTTON_STATE_EXSISTING_ACCOUNT = 2
@@ -55,7 +56,7 @@ class MyGUI(QMainWindow):
         self.radio_button_state = None
         self.update_radiobutton_choice()
         
-        self.pushButton_cancel.clicked.connect(exit)
+        self.pushButton_cancel.clicked.connect(sys.exit)
     
     
     # Hide and show options based on radio button state

@@ -25,3 +25,10 @@ Første gang et regnskap lages hvert år, huker man av for "Opprett nytt regnska
 2. Søk etter perioden du ønsker å legge inn i regnskapet, f.eks. 01. januar til dags dato.
 3. Trykk på ![Eksporter til regneark](https://nettbedriften.evry.com/cpsnbg2/bank/2844/images/excel.gif)-knappen øverst til høyre i søkeresultatene for å laste ned et regneark med transaksjoner.
 
+
+
+# Developer notes
+
+Compile using the command `pyinstaller .\regnskapsprogram.spec`
+
+

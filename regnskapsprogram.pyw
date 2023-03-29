@@ -122,6 +122,9 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         message = 'Ugyldig mappe: ' + str(os.path.dirname(input_filepath))
         title = 'Avbrutt'
         return success, message, title
+
+    if not os.path.exists('tmp'):
+        os.makedirs('tmp')
     shutil.copyfile(src=input_filepath, dst=tmp_filepath)
 
     # Check for invalid account name
@@ -129,6 +132,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         success = False
         message = 'Oppgi navn på regnskap'
         title = 'Avbrutt'
+        return success, message, title
 
     # Get format type of csv file
     format_type = -1
@@ -312,7 +316,11 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     old_transactions = []
     for row in range(first_transaction_row, last_transaction_row + 1):
         transaction = Transaciton()
-        transaction.date = sheet[date_col + str(row)].value.strftime("%d.%m.%Y")
+        transaction.date = sheet[date_col + str(row)].value
+        if isinstance(transaction.date, datetime.date):
+            transaction.date = transaction.date.strftime("%d.%m.%Y")
+        else:
+            transaction.date = '01.01.2000'
         transaction.bank_description = sheet[bank_description_col + str(row)].value
         transaction.belop_inn = sheet[nok_in_col + str(row)].value
         transaction.belop_ut = sheet[nok_out_col + str(row)].value
@@ -477,9 +485,6 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         backup_filename = datetime.datetime.now().strftime("%Y.%m.%d_kl_%H.%M.%S") + '_' + file_name
         shutil.copyfile(input_filepath, 'backups/' + backup_filename)
     shutil.copyfile(tmp_filepath, output_filepath)
-
-    if not os.path.exists('tmp'):
-        os.makedirs('tmp')
 
     # Save the default file name
     f = open('tmp/last_account_name.txt', 'w')

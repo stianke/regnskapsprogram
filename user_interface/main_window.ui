@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>icons/piggy-bank.png</normaloff>icons/piggy-bank.png</iconset>
+    <normaloff>icons/program_icon.ico</normaloff>icons/program_icon.ico</iconset>
   </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
