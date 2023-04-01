@@ -26,7 +26,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='regnskapsprogram',
+    name='Regnskapsprogram',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -37,6 +37,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon='user_interface\\icons\\program_icon_128.ico',
 )
 coll = COLLECT(
     exe,
