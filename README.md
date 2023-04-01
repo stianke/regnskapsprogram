@@ -29,6 +29,6 @@ Første gang et regnskap lages hvert år, huker man av for "Opprett nytt regnska
 
 # Developer notes
 
-Compile using the command `pyinstaller .\regnskapsprogram.spec`
+Compile using the command `pyinstaller .\pyinstaller_settings.spec`
 
 
