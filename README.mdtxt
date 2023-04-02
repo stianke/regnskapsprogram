@@ -29,6 +29,10 @@ Første gang et regnskap lages hvert år, huker man av for "Opprett nytt regnska
 
 # Developer notes
 
+Packaging into an installer for a windows executable is performed according to [this guide](https://www.pythonguis.com/tutorials/packaging-pyqt5-pyside2-applications-windows-pyinstaller/).
+
+To prevent Windows Defender from falsely flagging the applicaiton, I had to recompile the pyinstaller bootloader like described [here](https://python.plainenglish.io/pyinstaller-exe-false-positive-trojan-virus-resolved-b33842bd3184). Running `python.exe setup.py install` resulted in an error for me, but running `pip install .` from the directory containing `setup.py` did the trick instead.
+
 Compile using the command `pyinstaller .\pyinstaller_settings.spec`
 
 
