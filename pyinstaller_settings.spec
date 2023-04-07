@@ -5,10 +5,10 @@ block_cipher = None
 
 
 a = Analysis(
-    ['regnskapsprogram.pyw'],
+    ['src\\top_level.pyw'],
     pathex=[],
     binaries=[],
-    datas=[('template', 'template'), ('user_interface/main_window.ui', '.'), ('user_interface/icons', 'icons')],
+    datas=[('src\\template', 'template'), ('src\\user_interface\\main_window.ui', '.'), ('src\\user_interface\\icons', 'icons')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -37,7 +37,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='user_interface\\icons\\program_icon_128.ico',
+    icon='src\\user_interface\\icons\\program_icon_128.ico',
 )
 coll = COLLECT(
     exe,
@@ -47,5 +47,5 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='regnskapsprogram',
+    name='src\\top_level',
 )

@@ -1,6 +1,4 @@
 
-from pathlib import Path
-import sys
 import csv
 import shutil
 import openpyxl
@@ -12,8 +10,9 @@ import pandas
 import os
 import datetime
 import fnmatch
+import time
 
-import user_interface.UI_master
+import directory_fetcher
 
 # pip install pandas openpyxl pyqt5
 
@@ -21,12 +20,10 @@ import user_interface.UI_master
 FORMAT_TRANSAKSJONSOVERSIKT = 1
 FORMAT_SOEK_I_TRANSAKSJONER = 2
 
-template_path = 'template/Filterregnskap_template.xlsx'
+
 header_row = 2  # The row where the category headers are
 cell_with_year = 'C1'  # The cell where the current year is written
 cell_with_name = 'B1'
-
-appdata_folder_name = 'Regnskapsprogram'
 
 class Transaciton:
     def __init__(self):
@@ -99,37 +96,29 @@ def insert_empty_rows(sheet, row_to_insert_at, num_rows_to_insert, date_col, des
 
     return num_rows_to_insert
 
-
-def get_data_dir():
-    data_dir = Path.home()
-
-    if sys.platform == "win32":
-        data_dir = data_dir / "AppData/Roaming"
-    elif sys.platform == "linux":
-        data_dir = data_dir / ".local/share"
-    elif sys.platform == "darwin":
-        data_dir = data_dir / "Library/Application Support"
-
-    data_dir = data_dir / appdata_folder_name
-    if not os.path.exists(data_dir):
-        os.makedirs(data_dir)
-    return data_dir
-
+def delete_old_backups(max_file_age_days):
+    backups_directory = directory_fetcher.get_backups_dir()
+    all_backups = os.listdir(backups_directory)
+    current_time_sec = time.time()
+    for file_name in all_backups:
+        file_age_sec = current_time_sec - os.path.getmtime(backups_directory / file_name)
+        if file_age_sec > 3600 * 24 * max_file_age_days:
+            os.remove(backups_directory / file_name)
 
 
 def run_main_program(create_new_account, csv_transactions_file, year_to_track, account_name, account_filepath):
-    global template_path
+
     global header_row
     global cell_with_year
 
     output_filepath = account_filepath
     if create_new_account:
-        input_filepath = template_path
+        input_filepath = directory_fetcher.get_template_dir()
     else:
         input_filepath = account_filepath
 
-    tmp_dir = get_data_dir() / 'tmp'
-    backup_dir = get_data_dir() / 'backups'
+    tmp_dir = directory_fetcher.get_tmp_dir() / 'tmp'
+    backup_dir = directory_fetcher.get_backups_dir()
     tmp_filepath = tmp_dir / 'regnskap_tmp.xlsx'
 
     # Check for invalid csv file
@@ -504,6 +493,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     if not create_new_account:
         if not os.path.exists(backup_dir):
             os.makedirs(backup_dir)
+        delete_old_backups(max_file_age_days=60)
         [_, file_name] = os.path.split(input_filepath)
         backup_filename = datetime.datetime.now().strftime("%Y.%m.%d_kl_%H.%M.%S") + '_' + file_name
         shutil.copyfile(input_filepath, backup_dir / backup_filename)
@@ -525,40 +515,3 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     return success, message, title
 
 
-def main():
-    downloads_dir = str(Path.home() / "Downloads")
-    documents_dir = str(Path.home() / "Documents")
-    
-    default_create_new_account = True
-    default_year = str(datetime.date.today().year)
-    default_name = ''
-    default_new_transactions_file_dir = downloads_dir
-    default_account_location = documents_dir
-    default_exsisting_form = ''
-
-    tmp_dir = get_data_dir() / 'tmp'
-
-    # Get default exsisting account
-    if os.path.isfile(tmp_dir / 'last_account_file.txt'):
-        f = open(tmp_dir / 'last_account_file.txt')
-        default_exsisting_form = f.read()
-        default_account_location = os.path.dirname(default_exsisting_form)
-        f.close()
-        default_create_new_account = False
-
-    # Get default account name
-    if os.path.isfile(tmp_dir / 'last_account_name.txt'):
-        f = open(tmp_dir / 'last_account_name.txt')
-        default_name = f.read()
-        f.close()
-
-    user_interface.UI_master.run_GUI(default_create_new_account,
-                                     default_year,
-                                     default_name,
-                                     default_new_transactions_file_dir,
-                                     default_account_location,
-                                     default_exsisting_form,
-                                     run_main_program)
-
-if __name__ == "__main__":
-    main()

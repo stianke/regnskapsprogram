@@ -618,8 +618,20 @@
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuasdf">
+    <property name="title">
+     <string>Backup</string>
+    </property>
+    <addaction name="action_open_backups_dir"/>
+   </widget>
+   <addaction name="menuasdf"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_open_backups_dir">
+   <property name="text">
+    <string>Åpne mappe med automatiske backup av regnskap</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
