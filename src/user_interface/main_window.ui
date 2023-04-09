@@ -95,6 +95,12 @@
             <height>30</height>
            </size>
           </property>
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="toolTipDuration">
+           <number>-1</number>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -618,18 +624,41 @@
      <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuasdf">
+   <property name="toolTip">
+    <string>Før et eksisterende regnskap utvides, opprettes
+det automatisk en kopi av regnskapet. Dette er i
+tilfelle man ønsker å gå tilbake til den gamle
+versjonen senere. Kopiene slettes etter 60 dager.</string>
+   </property>
+   <property name="toolTipDuration">
+    <number>20000</number>
+   </property>
+   <widget class="QMenu" name="menu_open_backups_dir">
+    <property name="toolTip">
+     <string>Åpne mappen med automatiske backup av regnskap</string>
+    </property>
+    <property name="toolTipDuration">
+     <number>10000</number>
+    </property>
     <property name="title">
-     <string>Backup</string>
+     <string>Backups</string>
     </property>
     <addaction name="action_open_backups_dir"/>
    </widget>
-   <addaction name="menuasdf"/>
+   <addaction name="menu_open_backups_dir"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_open_backups_dir">
    <property name="text">
-    <string>Åpne mappe med automatiske backup av regnskap</string>
+    <string>Åpne backups</string>
+   </property>
+   <property name="toolTip">
+    <string>Åpne backups</string>
+   </property>
+  </action>
+  <action name="actionasd">
+   <property name="text">
+    <string>asd</string>
    </property>
   </action>
  </widget>

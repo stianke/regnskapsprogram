@@ -1,0 +1,3 @@
+[submodule "Release"]
+	path = Release
+	url = https://github.com/stianke/regnskapsprogram
