@@ -18,7 +18,8 @@ import directory_fetcher
 
 
 FORMAT_TRANSAKSJONSOVERSIKT = 1
-FORMAT_SOEK_I_TRANSAKSJONER = 2
+FORMAT_TRANSAKSJONSOVERSIKT_NEW = 2
+FORMAT_SOEK_I_TRANSAKSJONER = 3
 
 
 header_row = 2  # The row where the category headers are
@@ -148,13 +149,15 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
 
     # Get format type of csv file
     format_type = -1
-    fid = open (csv_transactions_file, 'r', encoding='cp1252')
+    fid = open(csv_transactions_file, 'r', encoding='cp1252')
     header_line = fid.readline(1000)
-    fid.close ()
+    fid.close()
     if header_line.find('Bokføringsdato') != -1:
         format_type = FORMAT_TRANSAKSJONSOVERSIKT
+    elif header_line.find('Valutadato') != -1:
+        format_type = FORMAT_TRANSAKSJONSOVERSIKT_NEW
     else:
-        fid = open (csv_transactions_file, 'r', encoding='UTF-8')
+        fid = open(csv_transactions_file, 'r', encoding='UTF-8')
         header_line = fid.readline(1000)
         fid.close()
         if header_line.find('Bokført') != -1:
@@ -166,7 +169,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
             return success, message, title
     
     # Read csv-file exported from Sparebanken Sør
-    if format_type == FORMAT_TRANSAKSJONSOVERSIKT:
+    if format_type == FORMAT_TRANSAKSJONSOVERSIKT or format_type == FORMAT_TRANSAKSJONSOVERSIKT_NEW:
         file = open(csv_transactions_file, 'r', encoding='cp1252')
     else:
         file = open (csv_transactions_file, 'r', encoding='UTF-8')
@@ -195,12 +198,38 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
             transaction.ref = row[ref_index]
             transaction.num_ref = row[num_ref_index]
             csv_transactions.append(transaction)
+    elif format_type == FORMAT_TRANSAKSJONSOVERSIKT_NEW:
+        date_index = csv_transactions_header.index('Bokført dato')
+        bank_description_index = csv_transactions_header.index('Melding/KID/Fakt.nr')
+        belop_indexs = csv_transactions_header.index('Beløp')
+        ref_index = csv_transactions_header.index('Arkivref')
+        num_ref_index = csv_transactions_header.index('Numref')
+        status_indexs = csv_transactions_header.index ('Status')
+
+        for row in csvreader:
+            if len(row) == 0 or row[date_index] == '':
+                break
+
+            if row[status_indexs] != 'Bokført':
+                continue
+            transaction = Transaciton()
+            transaction.date = row[date_index]
+            transaction.bank_description = row[bank_description_index]
+            if len(row[belop_indexs]) > 0:
+                if row[belop_indexs][0] == '-':
+                    transaction.belop_ut = row[belop_indexs][1:]
+                else:
+                    transaction.belop_inn = row[belop_indexs]
+            transaction.ref = row[ref_index]
+            transaction.num_ref = row[num_ref_index]
+            csv_transactions.append(transaction)
     else:
         date_index = csv_transactions_header.index('Bokført')
         bank_description_index = csv_transactions_header.index('Beskrivelse')
         tekstkode_indeks = csv_transactions_header.index ('Tekstkode')
         belop_indexs = csv_transactions_header.index ('Beløp')
         ref_index = csv_transactions_header.index('Arkivref.')
+
 
         for row in csvreader:
             if len(row) == 0 or row[date_index] == '':
