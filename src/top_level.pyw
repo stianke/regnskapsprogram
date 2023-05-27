@@ -10,7 +10,6 @@ import user_interface.UI_master
 
 load_regnskapsprogram_thrd = None
 regnskapsprogram = None
-program_is_running = False
 
 def load_regnskapsprogram():
     global regnskapsprogram
@@ -19,21 +18,11 @@ def load_regnskapsprogram():
 
 
 def call_main_program(*args):
-    global program_is_running
     global load_regnskapsprogram_thrd
     global regnskapsprogram
 
-    if program_is_running:
-        success = False
-        message = 'Kan ikke kjøre flere kall til programmet samtidig'
-        title = 'Avbrutt'
-        return success, message, title
-
-    program_is_running = True
     load_regnskapsprogram_thrd.join()
-
     ret = regnskapsprogram.run_main_program(*args)
-    program_is_running = False
     return ret
 
 
