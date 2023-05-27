@@ -17,6 +17,7 @@ class MyGUI(QMainWindow):
     def __init__ (self, default_create_new_account, default_year, default_name, default_new_transactions_file_dir, default_account_location, default_exsisting_form, open_backups_dir_function, main_program_function):
         super(MyGUI, self).__init__()
 
+        self.program_is_running = False
         self.show()
         try:
             uic.loadUi('main_window.ui', self)
@@ -102,25 +103,32 @@ class MyGUI(QMainWindow):
     
     # Run main program, end exit applicaion on success
     def attempt_to_run(self):
-        create_new_account = (self.radio_button_state == RADIOBUTTON_STATE_NEW_ACCOUNT)
-        csv_transactions_file = self.lineEdit_new_transactions_file.text()
-        year = self.lineEdit_account_year.text()
-        name = self.lineEdit_account_name.text()
-        account_filepath = ''
-        if create_new_account:
-            account_filepath = self.lineEdit_save_new_account_as.text()
-        else:
-            account_filepath = self.lineEdit_selcet_exsisting_account.text()
-        try:
-            success, message, title = self.main_program_function(create_new_account, csv_transactions_file, year, name, account_filepath)
-        except Exception as e:
+        if self.program_is_running:
             success = False
-            title = 'Error'
-            message = str(e)
+            message = 'Kan ikke kjøre flere kall til programmet samtidig'
+            title = 'Avbrutt'
+        else:
+            self.program_is_running = True
+            create_new_account = (self.radio_button_state == RADIOBUTTON_STATE_NEW_ACCOUNT)
+            csv_transactions_file = self.lineEdit_new_transactions_file.text()
+            year = self.lineEdit_account_year.text()
+            name = self.lineEdit_account_name.text()
+            account_filepath = ''
+            if create_new_account:
+                account_filepath = self.lineEdit_save_new_account_as.text()
+            else:
+                account_filepath = self.lineEdit_selcet_exsisting_account.text()
+            try:
+                success, message, title = self.main_program_function(create_new_account, csv_transactions_file, year, name, account_filepath)
+            except Exception as e:
+                success = False
+                title = 'Error'
+                message = str(e)
         message_box = QMessageBox()
         message_box.setText(message)
         message_box.setWindowTitle(title)
         message_box.exec_()
+        self.program_is_running = False
         if success:
             #exit()
             pass

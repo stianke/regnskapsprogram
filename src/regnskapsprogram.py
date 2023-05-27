@@ -11,6 +11,7 @@ import os
 import datetime
 import fnmatch
 import time
+import unicodedata
 
 import directory_fetcher
 
@@ -217,11 +218,11 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
             transaction.bank_description = row[bank_description_index]
             if len(row[belop_indexs]) > 0:
                 if row[belop_indexs][0] == '-':
-                    transaction.belop_ut = row[belop_indexs][1:]
+                    transaction.belop_ut = unicodedata.normalize('NFKD', row[belop_indexs][1:]).replace(' ', '')
                 else:
-                    transaction.belop_inn = row[belop_indexs]
+                    transaction.belop_inn = unicodedata.normalize('NFKD', row[belop_indexs]).replace(' ', '')
             transaction.ref = row[ref_index]
-            transaction.num_ref = row[num_ref_index]
+            transaction.num_ref = f'{int(row[num_ref_index]):011}'
             csv_transactions.append(transaction)
     else:
         date_index = csv_transactions_header.index('Bokført')
