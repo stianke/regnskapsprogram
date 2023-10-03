@@ -2,6 +2,7 @@ backups/*
 tmp/*
 venv/*
 .idea/*
+src/.idea/*
 __pycache__
 build/*
 dist/*
