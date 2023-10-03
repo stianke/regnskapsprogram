@@ -152,16 +152,17 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     format_type = -1
     fid = open(csv_transactions_file, 'r', encoding='cp1252')
     header_line = fid.readline(1000)
+    header_entries = header_line.split(';')
     fid.close()
-    if header_line.find('Bokføringsdato') != -1:
+    if header_entries[2] == 'Beskrivelse':
         format_type = FORMAT_TRANSAKSJONSOVERSIKT
-    elif header_line.find('Valutadato') != -1:
+    elif header_entries[2] == 'Rentedato':
         format_type = FORMAT_TRANSAKSJONSOVERSIKT_NEW
     else:
         fid = open(csv_transactions_file, 'r', encoding='UTF-8')
         header_line = fid.readline(1000)
         fid.close()
-        if header_line.find('Bokført') != -1:
+        if header_entries[2] == 'Tekstkode':
             format_type = FORMAT_SOEK_I_TRANSAKSJONER
         else:
             success = False
@@ -411,6 +412,10 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         date_cell = date_col + str(row)
         sheet[date_cell] = pandas.Timestamp(day=int(date[0]), month=int(date[1]), year=int(date[2]))
         sheet[date_cell].number_format = 'DD.MM.YYYY'
+
+        # Set attachment alignment to centeret
+        attachment_cell = attachment_col + str(row)
+        sheet[attachment_cell].alignment = openpyxl.styles.Alignment(horizontal='center')
 
         # Write NOK in
         NOK_in = transaction.belop_inn
