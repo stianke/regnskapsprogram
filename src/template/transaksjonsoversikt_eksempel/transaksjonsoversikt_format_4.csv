@@ -1,0 +1,57 @@
+Utført dato;Bokført dato;Rentedato;Beskrivelse;Type;Undertype;Fra konto;Avsender;Til konto;Mottakernavn;Beløp inn;Beløp ut;Valuta;Status;Numref;Arkivref;Melding/KID/Fakt.nr
+26.11.2024;26.11.2024;26.11.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;9,85;;NOK;Bokført;1435711;50797460083;Utb. 2000603 Vippsnr 136298
+25.11.2024;25.11.2024;25.11.2024;PAYPAL INC.;Betaling innland;Overføring fra annen konto;9750 06 62860;PAYPAL INC.;2801 31 63326;Arendal Misjonskirke;1 215,79;;NOK;Bokført;34112524263;50975024263;Fra: PAYPAL INC. Betalt: 25.11.24
+25.11.2024;25.11.2024;25.11.2024;Julius Caesar;Betaling innland;Utgående betaling;2801 31 63326;Filter;9480 12 91427;Julius Caesar;;-789,24;NOK;Bokført;30660030000;50281159451;"Til: Julius Caesar
+Brus til FILTER"
+25.11.2024;25.11.2024;25.11.2024;Ola Normann;Betaling innland;Utgående betaling;2801 31 63326;Filter;1225 47 62944;Ola Normann;;-149,45;NOK;Bokført;30660050000;50281159451;"Til: Ola Normann
+Lyspære til popcornmaskin"
+25.11.2024;25.11.2024;25.11.2024;Bulder Lekeland AS;Betaling innland;Innkommende betaling;2801 42 77945;Bulder Lekeland AS;2801 31 63326;Arendal Misjonskirke;2 750,00;;NOK;Bokført;41260380001;50281159451;Betalt to ganger Rune
+25.11.2024;25.11.2024;25.11.2024;Ola Normann;Betaling innland;Utgående betaling;2801 31 63326;Filter;1225 47 62944;Ola Normann;;-477,80;NOK;Bokført;30660040000;50281159451;"Til: Ola Normann
+Brus til Filterkiosken"
+25.11.2024;25.11.2024;25.11.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;379,21;;NOK;Bokført;1259204;50797460307;Utb. 2000602 Vippsnr 136298
+22.11.2024;22.11.2024;22.11.2024;Bulder Lekeland AS;Betaling innland;Utgående betaling;2801 31 63326;Filter;2801 42 77945;Bulder Lekeland AS;;-2 750,00;NOK;Bokført;21990640000;50281129451;Til: Bulder Lekeland AS
+20.11.2024;20.11.2024;20.11.2024;Bulder Lekeland AS;Betaling innland;Utgående betaling;2801 31 63326;Filter;2801 42 77945;Bulder Lekeland AS;;-2 750,00;NOK;Bokført;76068970000;50281109451;Til: Bulder Lekeland AS
+20.11.2024;20.11.2024;20.11.2024;VISMA AMILI AS;Betaling innland;Utgående betaling;2801 31 63326;Filter;1503 34 40445;VISMA AMILI AS;;-198,50;NOK;Bokført;76068980000;50281109451;Til: VISMA AMILI AS
+18.11.2024;18.11.2024;18.11.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;541,74;;NOK;Bokført;1397264;50797460079;Utb. 2000600 Vippsnr 136298
+18.11.2024;18.11.2024;18.11.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;1 699,11;;NOK;Bokført;1397264;50797460079;Utb. 2000601 Vippsnr 136298
+18.11.2024;18.11.2024;18.11.2024;Til konto: 2601 38 33868;Betaling innland;Utgående betaling;2801 31 63326;Filter;2601 38 33868;;;-870,00;NOK;Bokført;46824470000;50281189451;"Til: 2601.38.33868
+Tilbakebetaling overnatting"
+15.11.2024;15.11.2024;15.11.2024;Test Testson;Betaling innland;Innkommende betaling;2601 38 33868;Test Testson;2801 31 63326;Arendal Misjonskirke;870,00;;NOK;Bokført;850355;50260149343;Overnatting for Knoll og Tott
+14.11.2024;14.11.2024;14.11.2024;Kari Normann;Betaling innland;Utgående betaling;2801 31 63326;Filter;1813 52 15429;Kari Normann;;-1 487,35;NOK;Bokført;16663070000;50281149451;"Til: 1813.52.15429
+Premie for FILTERkampen våren 2024"
+14.11.2024;14.11.2024;14.11.2024;Kari Normann;Betaling innland;Utgående betaling;2801 31 63326;Filter;1813 52 15429;Kari Normann;;-500,00;NOK;Bokført;16663080000;50281149451;"Til: 1813.52.15429
+Innmelding Storcash"
+14.11.2024;14.11.2024;14.11.2024;Ola Normann;Betaling innland;Utgående betaling;2801 31 63326;Filter;1225 47 62944;Ola Normann;;-776,23;NOK;Bokført;16663090000;50281149451;"Til: Ola Normann
+Innkjøp til kiosken"
+12.11.2024;12.11.2024;12.11.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;59,10;;NOK;Bokført;359352;50797460452;Utb. 2000599 Vippsnr 136298
+11.11.2024;11.11.2024;11.11.2024;PAYPAL INC.;Betaling innland;Overføring fra annen konto;9750 06 62860;PAYPAL INC.;2801 31 63326;Arendal Misjonskirke;302,11;;NOK;Bokført;34111112033;50975012033;Fra: PAYPAL INC. Betalt: 11.11.24
+11.11.2024;11.11.2024;11.11.2024;Djengis Khan;Betaling innland;Innkommende betaling;3209 53 21215;Djengis Khan;2801 31 63326;Arendal Misjonskirke;335,00;;NOK;Bokført;571704;50320109343;Overnatting Roald Amundsen
+11.11.2024;11.11.2024;11.11.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;123,09;;NOK;Bokført;117672;50797460113;Utb. 2000598 Vippsnr 136298
+11.11.2024;11.11.2024;11.11.2024;Mahatma Gandhi;Betaling innland;Innkommende betaling med melding;2821 17 19127;Mahatma Gandhi;2801 31 63326;Arendal Misjonskirke;400,00;;NOK;Bokført;789873;50281119343;Overnatting Fridtjof Nanasen
+07.11.2024;07.11.2024;07.11.2024;Fra konto: 9004 06 64520;cash;Innskuddsautomat;9004 06 64520;;2801 31 63326;Arendal Misjonskirke;4 625,00;;NOK;Bokført;496235;50280077860;07.11 Arendal myntteller      Arendal
+04.11.2024;04.11.2024;04.11.2024;KLARNA BANK AB;Betaling innland;Utgående betaling;2801 31 63326;Filter;6021 07 36797;KLARNA BANK AB;;-3 658,00;NOK;Bokført;38470080000;50281149451;Til: KLARNA BANK AB
+04.11.2024;04.11.2024;04.11.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;103,41;;NOK;Bokført;393669;50797460081;Utb. 2000597 Vippsnr 136298
+04.11.2024;04.11.2024;04.11.2024;PAYPAL INC.;Betaling innland;Overføring fra annen konto;9750 06 62860;PAYPAL INC.;2801 31 63326;Arendal Misjonskirke;34,39;;NOK;Bokført;34110424744;50975024744;Fra: PAYPAL INC. Betalt: 04.11.24
+29.10.2024;29.10.2024;29.10.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;59,10;;NOK;Bokført;831012;50797460082;Utb. 2000596 Vippsnr 136298
+28.10.2024;28.10.2024;28.10.2024;Ola Normann;Betaling innland;Utgående betaling;2801 31 63326;Filter;1225 47 62944;Ola Normann;;-1 043,20;NOK;Bokført;80848650000;50281189451;"Til: Ola Normann
+Brus til kiosken"
+28.10.2024;28.10.2024;28.10.2024;Misjonskirken Ung;Betaling innland;Innkommende betaling;3000 34 25424;Misjonskirken Ung;2801 31 63326;Arendal Misjonskirke;9 163,00;;NOK;Bokført;89336010001;50281189451;Frifond, F-team - Arendal MK
+28.10.2024;28.10.2024;28.10.2024;PAYPAL INC.;Betaling innland;Overføring fra annen konto;9750 06 62860;PAYPAL INC.;2801 31 63326;Arendal Misjonskirke;903,86;;NOK;Bokført;34102813582;50975013582;Fra: PAYPAL INC. Betalt: 28.10.24
+28.10.2024;28.10.2024;28.10.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;29,54;;NOK;Bokført;640679;50797460110;Utb. 2000595 Vippsnr 136298
+22.10.2024;22.10.2024;22.10.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;14,77;;NOK;Bokført;1154226;50797430699;Utb. 2000594 Vippsnr 136298
+21.10.2024;21.10.2024;21.10.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;189,57;;NOK;Bokført;939364;50797460055;Utb. 2000593 Vippsnr 136298
+21.10.2024;21.10.2024;21.10.2024;Misjonskirken Ung;Betaling innland;Innkommende betaling;3000 34 25424;Misjonskirken Ung;2801 31 63326;Arendal Misjonskirke;9 163,00;;NOK;Bokført;38855190001;50281119451;Frifond, Filter - Arendal MK
+21.10.2024;21.10.2024;21.10.2024;PAYPAL INC.;Betaling innland;Overføring fra annen konto;9750 06 62860;PAYPAL INC.;2801 31 63326;Arendal Misjonskirke;527,60;;NOK;Bokført;34102124397;50975024397;Fra: PAYPAL INC. Betalt: 21.10.24
+15.10.2024;15.10.2024;15.10.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;19,70;;NOK;Bokført;1264638;50797460133;Utb. 2000592 Vippsnr 136298
+15.10.2024;15.10.2024;15.10.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;192,06;;NOK;Bokført;1258476;50797460131;Utb. 2000591 Vippsnr 136298
+14.10.2024;14.10.2024;14.10.2024;PAYPAL INC.;Betaling innland;Overføring fra annen konto;9750 06 62860;PAYPAL INC.;2801 31 63326;Arendal Misjonskirke;557,58;;NOK;Bokført;34101423620;50975023620;Fra: PAYPAL INC. Betalt: 14.10.24
+14.10.2024;14.10.2024;14.10.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;142,81;;NOK;Bokført;1049734;50797460090;Utb. 2000590 Vippsnr 136298
+08.10.2024;08.10.2024;08.10.2024;VIPPS MOBILEPAY AS;Betaling innland;Overføring fra annen konto;1503 94 12664;VIPPS MOBILEPAY AS;2801 31 63326;Arendal Misjonskirke;39,40;;NOK;Bokført;1532771;50797460094;Utb. 2000589 Vippsnr 136298
+;;;;;;;;;;;;;;;;
+Total beløp inn på konto:;;34 449,79 NOK;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;
+Totalt beløp ut av konto:;;-15 449,77 NOK;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;
+Inngående saldo pr. 01.10.2024:;;4 911,16 NOK;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;
+Utgående  saldo pr. 28.11.2024:;;23 911,18 NOK;;;;;;;;;;;;;;

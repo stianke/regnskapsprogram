@@ -4,7 +4,7 @@ import sys
 import os
 
 appdata_folder_name = 'Regnskapsprogram'
-template_path = 'template/Filterregnskap_template.xlsx'
+template_path = 'template/Regnskap_template.xlsx'
 
 def get_data_dir():
     data_dir = Path.home()
@@ -49,3 +49,7 @@ def open_backups_dir():
             # xdg-open *should* be supported by recent Gnome, KDE, Xfce
             pass
 
+def get_last_account_file():
+    return get_tmp_dir() / 'last_account_file.txt'
+def get_last_account_name_file():
+    return get_tmp_dir() / 'last_account_name.txt'

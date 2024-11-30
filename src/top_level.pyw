@@ -39,19 +39,19 @@ def main():
     default_account_location = documents_dir
     default_exsisting_form = ''
 
-    tmp_dir = directory_fetcher.get_tmp_dir()
+    tmp_dir = directory_fetcher.get_last_account_file()
 
     # Get default exsisting account
-    if os.path.isfile(tmp_dir / 'last_account_file.txt'):
-        f = open(tmp_dir / 'last_account_file.txt')
+    if os.path.isfile(directory_fetcher.get_last_account_file()):
+        f = open(directory_fetcher.get_last_account_file())
         default_exsisting_form = f.read()
         default_account_location = os.path.dirname(default_exsisting_form)
         f.close()
         default_create_new_account = False
 
     # Get default account name
-    if os.path.isfile(tmp_dir / 'last_account_name.txt'):
-        f = open(tmp_dir / 'last_account_name.txt')
+    if os.path.isfile(directory_fetcher.get_last_account_name_file()):
+        f = open(directory_fetcher.get_last_account_name_file())
         default_name = f.read()
         f.close()
     load_regnskapsprogram_thrd = threading.Thread(target=load_regnskapsprogram, args=())

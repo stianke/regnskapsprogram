@@ -21,6 +21,7 @@ import directory_fetcher
 FORMAT_TRANSAKSJONSOVERSIKT = 1
 FORMAT_TRANSAKSJONSOVERSIKT_NEW = 2
 FORMAT_SOEK_I_TRANSAKSJONER = 3
+FORMAT_4 = 4
 
 
 header_row = 2  # The row where the category headers are
@@ -156,6 +157,8 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     fid.close()
     if header_entries[2] == 'Beskrivelse':
         format_type = FORMAT_TRANSAKSJONSOVERSIKT
+    elif header_entries[5] == 'Undertype':
+        format_type = FORMAT_4
     elif header_entries[2] == 'Rentedato':
         format_type = FORMAT_TRANSAKSJONSOVERSIKT_NEW
     else:
@@ -171,7 +174,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
             return success, message, title
     
     # Read csv-file exported from Sparebanken Sør
-    if format_type == FORMAT_TRANSAKSJONSOVERSIKT or format_type == FORMAT_TRANSAKSJONSOVERSIKT_NEW:
+    if format_type == FORMAT_TRANSAKSJONSOVERSIKT or format_type == FORMAT_TRANSAKSJONSOVERSIKT_NEW or format_type == FORMAT_4:
         file = open(csv_transactions_file, 'r', encoding='cp1252')
     else:
         file = open (csv_transactions_file, 'r', encoding='UTF-8')
@@ -198,7 +201,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
             transaction.belop_inn = row[nok_in_index]
             transaction.belop_ut = row[nok_out_index]
             transaction.ref = row[ref_index]
-            transaction.num_ref = row[num_ref_index]
+            transaction.num_ref = f'{int(row[num_ref_index]):011}'
             csv_transactions.append(transaction)
     elif format_type == FORMAT_TRANSAKSJONSOVERSIKT_NEW:
         date_index = csv_transactions_header.index('Bokført dato')
@@ -225,7 +228,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
             transaction.ref = row[ref_index]
             transaction.num_ref = f'{int(row[num_ref_index]):011}'
             csv_transactions.append(transaction)
-    else:
+    elif format_type == FORMAT_SOEK_I_TRANSAKSJONER:
         date_index = csv_transactions_header.index('Bokført')
         bank_description_index = csv_transactions_header.index('Beskrivelse')
         tekstkode_indeks = csv_transactions_header.index ('Tekstkode')
@@ -245,6 +248,47 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
                     transaction.belop_ut = row[belop_indexs][1:]
                 else:
                     transaction.belop_inn = row[belop_indexs]
+            csv_transactions.append(transaction)
+    elif format_type == FORMAT_4:
+        date_index = csv_transactions_header.index('Bokført dato')
+        bank_description_index = csv_transactions_header.index('Melding/KID/Fakt.nr')
+        nok_in_index = csv_transactions_header.index('Beløp inn')
+        nok_out_index = csv_transactions_header.index('Beløp ut')
+        ref_index = csv_transactions_header.index('Arkivref')
+        num_ref_index = csv_transactions_header.index('Numref')
+        status_indexs = csv_transactions_header.index('Status')
+
+        for row in csvreader:
+            if len(row) == 0 or row[date_index] == '':
+                break
+            if row[status_indexs] != 'Bokført':
+                continue
+
+            transaction = Transaciton()
+            transaction.date = row[date_index]
+
+
+            if len(row[nok_in_index]) > 0:
+                bank_description_prefix = f'Fra {row[csv_transactions_header.index("Avsender")]}'
+            else:
+                bank_description_prefix = f'Til {row[csv_transactions_header.index("Mottakernavn")]}'
+
+            transaction.bank_description = row[bank_description_index].replace('\n', ' - ')
+            if len(bank_description_prefix) > 4 and \
+                not bank_description_prefix[4:] in transaction.bank_description and \
+                not ('Utb. ' in transaction.bank_description and 'Vippsnr' in transaction.bank_description):
+                if len(row[nok_in_index]) > 0:
+                    transaction.bank_description = f'{bank_description_prefix}: {transaction.bank_description}'
+                else:
+                    transaction.bank_description = f'{bank_description_prefix}: {transaction.bank_description}'
+
+
+            if len(row[nok_in_index]) > 0:
+                transaction.belop_inn = unicodedata.normalize('NFKD', row[nok_in_index]).replace(' ', '')
+            if len(row[nok_out_index]) > 0:
+                transaction.belop_ut = unicodedata.normalize('NFKD', row[nok_out_index][1:]).replace(' ', '')
+            transaction.ref = row[ref_index]
+            transaction.num_ref = f'{int(row[num_ref_index]):011}'
             csv_transactions.append(transaction)
     file.close()
 
@@ -535,12 +579,12 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     shutil.copyfile(tmp_filepath, output_filepath)
 
     # Save the default file name
-    f = open(tmp_dir / 'last_account_name.txt', 'w')
+    f = open(directory_fetcher.get_last_account_name_file(), 'w')
     f.write(account_name)
     f.close()
 
     # Save default file selection
-    f = open(tmp_dir / 'last_account_file.txt', 'w')
+    f = open(directory_fetcher.get_last_account_file(), 'w')
     f.write(account_filepath)
     f.close()
 
@@ -550,3 +594,21 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     return success, message, title
 
 
+
+
+
+if __name__ == '__main__':
+    print('asdasd')
+    create_new_account = False
+    year = 2024
+    name = 'Filter'
+
+    account_filepath = 'C:\\Users\\stian\\Downloads\\test\\Regnskap Filter 2024.xlsx'
+    csv_transactions_file = 'C:\\Users\\stian\\Downloads\\test\\Transaksjoner_2024-11-28.csv'
+    success, message, title = run_main_program(create_new_account, csv_transactions_file, year, name, account_filepath)
+
+    print('')
+    if success:
+        print(f'{title}: Success: {message}')
+    else:
+        print(f'{title}: Failure: {message}')

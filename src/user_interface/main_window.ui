@@ -592,7 +592,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Avbryt</string>
+           <string>Lukk</string>
           </property>
          </widget>
         </item>
