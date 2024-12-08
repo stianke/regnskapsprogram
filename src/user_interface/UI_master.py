@@ -60,7 +60,7 @@ class MyGUI(QMainWindow):
         self.radio_button_state = None
         self.update_radiobutton_choice()
         
-        self.pushButton_cancel.clicked.connect(sys.exit)
+        #self.pushButton_cancel.clicked.connect(sys.exit)
     
     
     # Hide and show options based on radio button state

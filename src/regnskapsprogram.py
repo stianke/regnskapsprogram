@@ -19,9 +19,10 @@ import directory_fetcher
 
 
 FORMAT_TRANSAKSJONSOVERSIKT = 1
-FORMAT_TRANSAKSJONSOVERSIKT_NEW = 2
-FORMAT_SOEK_I_TRANSAKSJONER = 3
-FORMAT_4 = 4
+FORMAT_TRANSAKSJONSOVERSIKT_MED_ANFORSELSTEGN = 2
+FORMAT_TRANSAKSJONSOVERSIKT_NEW = 3
+FORMAT_SOEK_I_TRANSAKSJONER = 4
+FORMAT_4 = 5
 
 
 header_row = 2  # The row where the category headers are
@@ -157,6 +158,8 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     fid.close()
     if header_entries[2] == 'Beskrivelse':
         format_type = FORMAT_TRANSAKSJONSOVERSIKT
+    elif header_entries[2] == '"Beskrivelse"':
+        format_type = FORMAT_TRANSAKSJONSOVERSIKT_MED_ANFORSELSTEGN
     elif header_entries[5] == 'Undertype':
         format_type = FORMAT_4
     elif header_entries[2] == 'Rentedato':
@@ -174,7 +177,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
             return success, message, title
     
     # Read csv-file exported from Sparebanken Sør
-    if format_type == FORMAT_TRANSAKSJONSOVERSIKT or format_type == FORMAT_TRANSAKSJONSOVERSIKT_NEW or format_type == FORMAT_4:
+    if format_type == FORMAT_TRANSAKSJONSOVERSIKT or format_type == FORMAT_TRANSAKSJONSOVERSIKT_MED_ANFORSELSTEGN or format_type == FORMAT_TRANSAKSJONSOVERSIKT_NEW or format_type == FORMAT_4:
         file = open(csv_transactions_file, 'r', encoding='cp1252')
     else:
         file = open (csv_transactions_file, 'r', encoding='UTF-8')
@@ -183,7 +186,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     # Read data from csv file
     csv_transactions_header = next(csvreader)
     csv_transactions = []
-    if format_type == FORMAT_TRANSAKSJONSOVERSIKT:
+    if format_type == FORMAT_TRANSAKSJONSOVERSIKT or format_type == FORMAT_TRANSAKSJONSOVERSIKT_MED_ANFORSELSTEGN:
         date_index = csv_transactions_header.index('Bokføringsdato')
         bank_description_index = csv_transactions_header.index('Beskrivelse')
         nok_in_index = csv_transactions_header.index('Inn på konto')
@@ -192,7 +195,11 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         num_ref_index = csv_transactions_header.index('Num.Ref.')
 
         for row in csvreader:
-            if len(row) == 0 or row[date_index] == '':
+            for i in range(len(row)):
+                if format_type == FORMAT_TRANSAKSJONSOVERSIKT_MED_ANFORSELSTEGN and len(row[i]) > 0 and row[i][0] == '"' and row[i][-1] == '"':
+                    row[i] = row[i][1:-1]
+
+            if len(row) == 0 or row[date_index] == '' or row[date_index] == '""':
                 break
 
             transaction = Transaciton()
