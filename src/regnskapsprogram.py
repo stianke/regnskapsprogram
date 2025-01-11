@@ -115,6 +115,12 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     global header_row
     global cell_with_year
 
+    if account_filepath == '':
+        success = False
+        message = 'Spesifiser fillokasjon for regnskapet'
+        title = 'Avbrutt'
+        return success, message, title
+
     output_filepath = account_filepath
     if create_new_account:
         input_filepath = directory_fetcher.get_template_dir()
@@ -295,7 +301,10 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
             if len(row[nok_out_index]) > 0:
                 transaction.belop_ut = unicodedata.normalize('NFKD', row[nok_out_index][1:]).replace(' ', '')
             transaction.ref = row[ref_index]
-            transaction.num_ref = f'{int(row[num_ref_index]):011}'
+            if row[num_ref_index] == '':
+                transaction.num_ref = ''
+            else:
+                transaction.num_ref = f'{int(row[num_ref_index]):011}'
             csv_transactions.append(transaction)
     file.close()
 
@@ -565,8 +574,8 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     for col in range(1, 10):
         for row in range(1, 100):
             if sheet_summary.cell(row, col).value is not None and fnmatch.filter([sheet_summary.cell(row, col).value], '=CONCATENATE("Utgående balanse ", Regnskap!A*)'):
-                sheet_summary.cell(row, col).value = '=CONCATENATE("Utgående balanse ", Regnskap!A' + str(UB_Bank_row) + ')'
-                sheet_summary.cell(row, col+2).value = '=Regnskap!' + nok_out_col + str(UB_Bank_row)
+                sheet_summary.cell(row, col).value = f'=CONCATENATE("Utgående balanse ", Regnskap!A{UB_Bank_row})'
+                sheet_summary.cell(row, col+2).value = f'=IF(Regnskap!{nok_out_col}{UB_Bank_row}="FYLL INN", "Se hovedark", Regnskap!{nok_out_col}{UB_Bank_row})'
                 finished = True
                 break
         if finished:
