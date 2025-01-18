@@ -42,10 +42,10 @@ class Transaciton:
         # If date and ref num are identical, we say that the transactions are the same
         date_is_equal = str(self.date) == str(other.date)
         ref_is_equal = str(self.ref) == str(other.ref)
+
         if len(str(self.num_ref)) == 0 or len(str(other.num_ref)) == 0 or other.num_ref is None:
-            num_ref_is_equal = True
-        else:
-            num_ref_is_equal = str(self.num_ref) == str(other.num_ref)
+            return date_is_equal and ref_is_equal
+        num_ref_is_equal = str(self.num_ref) == str(other.num_ref)
 
         return date_is_equal and ref_is_equal and num_ref_is_equal
 
@@ -450,17 +450,42 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
 
         if not transaction_is_old:
             new_transactions.append(potentially_new_transaction)
+
+    rejected_transactions = []
+    def to_date(date_str):
+        try:
+            return datetime.date(day=int(date_str[:2]), month=int(date_str[3:5]), year=int(date_str[6:]))
+        except:
+            raise Exception(f'Uventet format på dato: {date_str}')
+    for i in range(len(new_transactions)).__reversed__():
+        if to_date(new_transactions[i].date) < to_date(old_transactions[-1].date):
+            rejected_transactions.append(new_transactions[i])
+            new_transactions = new_transactions[:-1]
+        else:
+            break
+    message_postfix = ''
+    if len(rejected_transactions) > 0:
+        message_postfix += f'\n\n'
+        message_postfix += f'Advarsel: Følgende transaksjoner er ikke importert, da bokført dato er eldre enn den siste transaksjonen i rengskapet. Legg denne til manuelt hvis den ikke allerede er inkludert i regnskapet:'
+        index = 1
+        for transaction in rejected_transactions:
+            message_postfix += f'\n{index}: ---------------------------'
+            message_postfix += f'\n{transaction.date}: {transaction.belop_inn} {transaction.belop_ut} NOK \n\t{transaction.bank_description}, \n\tRef.: {transaction.ref}, \n\tNum. Ref.: {transaction.num_ref}'
+            index += 1
+
+
+    # Reverse new transactions, to get the oldest ones at the top
+    new_transactions.reverse()
+
     if len(new_transactions) == 0:
         success = False
-        message = 'Alle transaksjoner i csv-dokumentet er allerede inkludert i regnskapet'
-        title = 'Ingen transaksjoner funnet'
+        message = 'Ingen nye transaksjoner er importert' + message_postfix
+        title = 'Ingen endring'
         return success, message, title
 
     # Insert blank rows to fill inn with the new transactions
     UB_Bank_row += insert_empty_rows(sheet, last_transaction_row, len(new_transactions), date_col, description_col, attachment_col, nok_in_col, nok_out_col)
 
-    # Reverse new transactions, to get the oldest ones at the top
-    new_transactions.reverse()
 
     # Write new transactions to account form
     first_new_transaction_row = last_transaction_row + 1
@@ -605,7 +630,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
     f.close()
 
     success = True
-    message = str(len(new_transactions)) + ' nye transaksjoner lagt til'
+    message = f'{len(new_transactions)} nye transaksjoner lagt til' + message_postfix
     title = 'Ferdig'
     return success, message, title
 

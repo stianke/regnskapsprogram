@@ -3,7 +3,7 @@
 ProjectFileVersion = 1.1
 [General]
 Program name = Regnskapsprogram
-Program version = 1.4
+Program version = 1.6
 Windows XP = 1
 Windows Server 2003 = 1
 Windows Vista = 1
@@ -57,9 +57,9 @@ Time = 2
 PlaySound = 0
 Allow = 0
 [Build]
-File = C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\Release\Regnskapsprogram_installer.exe
+File = C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\Release\Regnskapsprogram_installer_1.6_Windows.exe
 SetupIconPath = C:\Program Files (x86)\solicus\InstallForge\icons\modern.ico
-UninstallIconPath = C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\src\user_interface\icons\program_icon.ico
+UninstallIconPath = C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\src\user_interface\icons\program_icon.ico
 CompressionMethod = 1
 CompressionLevel = 2
 [Updater]
@@ -76,280 +76,280 @@ RunProgs = 0
 Execdlls = 0
 [Languages]
 [Files/Dirs]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_asyncio.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_asyncio.pyd
 63.8 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_bz2.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_bz2.pyd
 81.8 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_cffi_backend.cp310-win_amd64.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_cffi_backend.cp310-win_amd64.pyd
 177 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_ctypes.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_ctypes.pyd
 120.8 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_decimal.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_decimal.pyd
 246.3 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_elementtree.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_elementtree.pyd
 125.3 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_hashlib.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_hashlib.pyd
 63.3 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_lzma.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_lzma.pyd
 154.8 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_multiprocessing.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_multiprocessing.pyd
 33.8 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_overlapped.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_overlapped.pyd
 48.8 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_queue.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_queue.pyd
 30.8 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_socket.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_socket.pyd
 77.3 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_sqlite3.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_sqlite3.pyd
 96.8 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_ssl.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_ssl.pyd
 156.8 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_tkinter.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_tkinter.pyd
 64.3 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_uuid.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_uuid.pyd
 24.8 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\_win32sysloader.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\_win32sysloader.pyd
 14.5 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\base_library.zip
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\base_library.zip
 1 MB
 zip
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\concrt140.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\concrt140.dll
 319.9 KB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\libcrypto-1_1.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\libcrypto-1_1.dll
 3.3 MB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\libffi-7.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\libffi-7.dll
 32 KB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\libopenblas64__v0.3.21-gcc_10_3_0.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\libopenblas64__v0.3.21-gcc_10_3_0.dll
 34.2 MB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\libsodium-ac42d648.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\libsodium-ac42d648.dll
 301 KB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\libssl-1_1.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\libssl-1_1.dll
 686.8 KB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\libzmq-v141-mt-4_3_4-0a6f51ca.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\libzmq-v141-mt-4_3_4-0a6f51ca.dll
 513 KB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\main_window.ui
-21.1 KB
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\main_window.ui
+20.9 KB
 ui
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\mfc140u.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\mfc140u.dll
 5.4 MB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\msvcp140.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\msvcp140.dll
 607.4 KB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\pyexpat.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\pyexpat.pyd
 194.3 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\python3.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\python3.dll
 64.8 KB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\python310.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\python310.dll
 4.3 MB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\Regnskapsprogram.exe
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\Regnskapsprogram.exe
 18.1 MB
 exe
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\select.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\select.pyd
 29.3 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\sqlite3.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\sqlite3.dll
 1.5 MB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\tcl86t.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\tcl86t.dll
 1.8 MB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\tk86t.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\tk86t.dll
 1.5 MB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\unicodedata.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\unicodedata.pyd
 1.1 MB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\VCRUNTIME140.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\VCRUNTIME140.dll
 95.9 KB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\VCRUNTIME140_1.dll
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\VCRUNTIME140_1.dll
 36.4 KB
 dll
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\win32api.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\win32api.pyd
 130.5 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\win32clipboard.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\win32clipboard.pyd
 27 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\win32evtlog.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\win32evtlog.pyd
 71.5 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\win32pdh.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\win32pdh.pyd
 34 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\win32security.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\win32security.pyd
 133 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\win32trace.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\win32trace.pyd
 23 KB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\win32ui.pyd
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\win32ui.pyd
 1.1 MB
 pyd
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\attrs-23.1.0.dist-info\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\attrs-23.1.0.dist-info\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\certifi\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\certifi\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\charset_normalizer\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\charset_normalizer\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\contourpy\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\contourpy\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\icons\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\icons\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\importlib_metadata-6.8.0.dist-info\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\importlib_metadata-6.8.0.dist-info\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\IPython\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\IPython\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\jedi\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\jedi\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\jsonschema\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\jsonschema\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\jsonschema_specifications\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\jsonschema_specifications\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\jsonschema-4.19.0.dist-info\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\jsonschema-4.19.0.dist-info\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\kiwisolver\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\kiwisolver\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\lib2to3\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\lib2to3\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\llvmlite\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\llvmlite\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\lxml\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\lxml\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\markupsafe\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\markupsafe\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\matplotlib\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\matplotlib\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\matplotlib.libs\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\matplotlib.libs\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\nbformat\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\nbformat\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\nbformat-5.9.2.dist-info\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\nbformat-5.9.2.dist-info\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\numba\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\numba\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\numpy\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\numpy\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\pandas\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\pandas\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\parso\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\parso\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\PIL\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\PIL\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\psutil\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\psutil\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\pyarrow\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\pyarrow\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\PyQt5\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\PyQt5\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\PySide6\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\PySide6\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\pytz\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\pytz\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\pywin32_system32\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\pywin32_system32\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\pyzmq.libs\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\pyzmq.libs\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\rpds\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\rpds\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\scipy\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\scipy\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\scipy.libs\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\scipy.libs\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\setuptools-65.5.0.dist-info\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\setuptools-65.5.0.dist-info\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\shiboken6\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\shiboken6\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\tcl\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\tcl\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\tcl8\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\tcl8\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\template\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\template\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\tk\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\tk\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\tornado\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\tornado\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\wheel-0.40.0.dist-info\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\wheel-0.40.0.dist-info\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\win32com\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\win32com\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\yaml\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\yaml\
 N/A
 [Folder]
-C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Div\python_script\dist\top_level\zmq\
+C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\dist\top_level\zmq\
 N/A
 [Folder]
 [Licence_Begin]

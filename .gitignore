@@ -6,3 +6,4 @@ src/.idea/*
 __pycache__
 build/*
 dist/*
+Release/*
