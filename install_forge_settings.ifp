@@ -3,7 +3,7 @@
 ProjectFileVersion = 1.1
 [General]
 Program name = Regnskapsprogram
-Program version = 1.6
+Program version = 1.6.1
 Windows XP = 1
 Windows Server 2003 = 1
 Windows Vista = 1
@@ -57,7 +57,7 @@ Time = 2
 PlaySound = 0
 Allow = 0
 [Build]
-File = C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\Release\Regnskapsprogram_installer_1.6_Windows.exe
+File = C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\Release\Regnskapsprogram_installer_1.6.1_Windows.exe
 SetupIconPath = C:\Program Files (x86)\solicus\InstallForge\icons\modern.ico
 UninstallIconPath = C:\Users\stian\Documents\_My_files\Kristent\Misjonskirka\Regnskap\python_script\src\user_interface\icons\program_icon.ico
 CompressionMethod = 1

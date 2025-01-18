@@ -458,7 +458,7 @@ def run_main_program(create_new_account, csv_transactions_file, year_to_track, a
         except:
             raise Exception(f'Uventet format på dato: {date_str}')
     for i in range(len(new_transactions)).__reversed__():
-        if to_date(new_transactions[i].date) < to_date(old_transactions[-1].date):
+        if len(old_transactions) > 0 and to_date(new_transactions[i].date) < to_date(old_transactions[-1].date):
             rejected_transactions.append(new_transactions[i])
             new_transactions = new_transactions[:-1]
         else:
